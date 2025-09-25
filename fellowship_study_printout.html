@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Study Month 2 - Fellowship</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Open+Sans:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.15;
+            color: #2c3e50;
+            background: white;
+            font-size: 10pt;
+        }
+
+        .page {
+            width: 11.7in;
+            height: 16.5in;
+            margin: 0 auto;
+            padding: 0.2in;
+            background: white;
+            page-break-after: always;
+        }
+
+        .page:last-child {
+            page-break-after: avoid;
+        }
+
+        /* HEADER - has background */
+        .header {
+            background: linear-gradient(135deg, #2563EB, #22D3EE);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 22pt;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .header h2 {
+            font-size: 16pt;
+            font-weight: 300;
+            margin-bottom: 6px;
+        }
+
+        .date-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            margin-top: 6px;
+        }
+
+        .date-info div {
+            background: rgba(255,255,255,0.2);
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+
+        /* THEME BOX - has background */
+        .theme-box {
+            background: linear-gradient(135deg, #10B981, #34D399);
+            padding: 6px;
+            border-radius: 4px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .theme-box h3 {
+            color: white;
+            font-size: 12pt;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .theme-box p {
+            font-size: 9pt;
+            color: rgba(255,255,255,0.9);
+            font-style: italic;
+        }
+
+        /* SCRIPTURE TITLE - has background, stops at text */
+        .scripture-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 14pt;
+            color: white;
+            text-align: center;
+            margin-bottom: 8px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #F97316, #FB7185);
+            padding: 8px;
+            border-radius: 4px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* SCRIPTURE TEXT - white background only */
+        .scripture-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 9pt;
+            line-height: 1.4;
+            color: #2c3e50;
+            background: white;
+            padding: 10px;
+            border-radius: 3px;
+            border-left: 3px solid #2563EB;
+            margin-bottom: 6px;
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #2563EB;
+            font-size: 8pt;
+            vertical-align: super;
+        }
+
+        .verse-reference {
+            text-align: right;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 8pt;
+            background: white;
+            margin-bottom: 10px;
+        }
+
+        /* KEY VERSE - has background */
+        .key-verse-box {
+            background: linear-gradient(135deg, #2563EB, #22D3EE);
+            color: white;
+            padding: 6px;
+            border-radius: 4px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .key-verse-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 11pt;
+            line-height: 1.3;
+            font-style: italic;
+        }
+
+        /* TWO COLUMN LAYOUT */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* THREE COLUMN LAYOUT FOR PAGE 2 */
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+
+        .column {
+            background: white;
+        }
+
+        /* SECTION HEADERS - colored background, stops at text */
+        .section-header {
+            font-family: 'Crimson Text', serif;
+            font-size: 12pt;
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            padding: 6px;
+            border-radius: 3px;
+            margin: 8px 0 6px 0;
+        }
+
+        .reflection-header {
+            background: linear-gradient(135deg, #7C3AED, #DB2777);
+        }
+
+        .prayer-header {
+            background: linear-gradient(135deg, #10B981, #34D399);
+        }
+
+        .discussion-header {
+            background: linear-gradient(135deg, #2563EB, #22D3EE);
+        }
+
+        .challenge-header {
+            background: linear-gradient(135deg, #F97316, #FB7185);
+        }
+
+        .notes-header {
+            background: linear-gradient(135deg, #2563EB, #22D3EE);
+        }
+
+        /* CONTENT AREAS - white background only */
+        .content-text {
+            background: white;
+            color: #2c3e50;
+            font-size: 9pt;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .content-text.bold {
+            font-weight: 600;
+        }
+
+        .write-in-line {
+            border-bottom: 1px dotted #666;
+            display: inline-block;
+            height: 14px;
+            margin: 2px 0;
+        }
+
+        /* QUESTION CATEGORIES - colored backgrounds that stop at text */
+        .question-category-header {
+            background: linear-gradient(135deg, #7C3AED, #DB2777);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 10pt;
+            margin: 6px 0 5px 0;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .question-category-header.green {
+            background: linear-gradient(135deg, #10B981, #34D399);
+        }
+
+        .question-category-header.red {
+            background: linear-gradient(135deg, #F97316, #FB7185);
+        }
+
+        .question-item {
+            background: #f8f9fa;
+            padding: 3px;
+            margin: 2px 0;
+            border-radius: 2px;
+            border-left: 2px solid #2563EB;
+            font-size: 6.5pt;
+            line-height: 1.2;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3px;
+            margin: 4px 0;
+        }
+
+        .challenge-item {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 4px;
+            border-radius: 3px;
+            font-size: 6pt;
+            text-align: left;
+        }
+
+        .challenge-item input[type="checkbox"] {
+            margin-right: 4px;
+            transform: scale(0.8);
+        }
+
+        .notes-area {
+            border: 1px dashed #666;
+            padding: 4px;
+            border-radius: 3px;
+            background: white;
+            height: 300px;
+        }
+
+        .notes-lines {
+            background-image: repeating-linear-gradient(
+                transparent,
+                transparent 12px,
+                #ddd 12px,
+                #ddd 13px
+            );
+            height: 100%;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 6px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 6pt;
+            margin-top: 8px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 4px;
+            margin: 4px 0;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.2);
+            padding: 2px 4px;
+            border-radius: 6px;
+            font-size: 5pt;
+        }
+
+        /* PRINT OPTIMIZATIONS */
+        @media print {
+            body {
+                background: white !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .page {
+                margin: 0;
+                padding: 1in;
+                box-shadow: none;
+                background: white !important;
+            }
+            
+            .header,
+            .theme-box,
+            .scripture-title,
+            .key-verse-box,
+            .section-header,
+            .question-category-header {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            
+            /* Ensure footer and all content areas are white when printing */
+            .footer {
+                background: white !important;
+                color: #2c3e50 !important;
+                border: 2px solid #2c3e50 !important;
+            }
+            
+            .contact-item {
+                background: #f8f9fa !important;
+                color: #2c3e50 !important;
+                border: 1px solid #dee2e6 !important;
+            }
+            
+            .scripture-text,
+            .content-text,
+            .question-item,
+            .challenge-item,
+            .notes-area,
+            .notes-lines,
+            .column,
+            .verse-reference {
+                background: white !important;
+                color: #2c3e50 !important;
+            }
+            
+            .challenge-grid {
+                background: white !important;
+            }
+            
+            .write-in-line {
+                background: white !important;
+                border-bottom: 1px dotted #666 !important;
+            }
+        }
+
+        @page {
+            margin: 0.25in;
+            size: letter;
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE 1: HEADER, SCRIPTURE & REFLECTION -->
+    <div class="page">
+        <!-- Header with background -->
+        <div class="header">
+            <h1>Women's Bible Study</h1>
+            <h2>Month 2: "Fellowship"</h2>
+            <div class="date-info">
+                <div>Date: ________________</div>
+                <div>Location: ________________</div>
+            </div>
+        </div>
+
+        <!-- Theme with background -->
+        <div class="theme-box">
+            <h3>💡 This Month's Theme 🙏</h3>
+            <p>The power of transparent fellowship - How vulnerability with one another invites God's healing presence</p>
+        </div>
+
+        <div class="two-column">
+            <!-- LEFT COLUMN: Scripture -->
+            <div class="column">
+                <!-- Scripture title with background -->
+<div class="scripture-title">📖 James 5:16 & Galatians 6:1-2 (NLT)</div>
+                
+                <!-- Scripture text - white background only -->
+                <div class="scripture-text">
+                    <strong>James 5:16</strong><br>
+                    <span class="verse-number">16</span><strong>Confess your sins to each other and pray for each other so that you may be healed. The earnest prayer of a righteous person has great power and produces wonderful results.</strong>
+                    <br><br>
+                    <strong>Galatians 6:1-2</strong><br>
+                    <span class="verse-number">1</span>Dear brothers and sisters, if another believer is overcome by some sin, you who have God's Spirit must gently and humbly help that person back onto the right path. And be careful not to fall into the same temptation yourself. <span class="verse-number">2</span><strong>Share each other's burdens, and in this way obey the law of Christ.</strong>
+                </div>
+                <div class="verse-reference">- James 5:16 & Galatians 6:1-2 (New Living Translation)</div>
+
+                <!-- Key verse with background -->
+                <div class="key-verse-box">
+                    <div style="font-size: 7pt; font-weight: 600; margin-bottom: 3px;">✨ KEY VERSE ✨</div>
+                    <div class="key-verse-text">
+                        "Confess your sins to each other and pray for each other so that you may be healed." - James 5:16
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Reflection & Prayer -->
+            <div class="column">
+                <!-- Reflection header with background -->
+                <div class="section-header reflection-header">💭 Pre-Study Reflection</div>
+                
+                <!-- Content - white background only -->
+                <div class="content-text bold">What is the connection between confession and healing in James 5:16?</div>
+                <div class="write-in-line" style="width: 95%;"></div><br>
+                <div class="write-in-line" style="width: 95%;"></div><br>
+                
+                <div class="content-text bold">How does "sharing each other's burdens" invite God's presence?</div>
+                <div class="write-in-line" style="width: 95%;"></div><br>
+                <div class="write-in-line" style="width: 95%;"></div><br>
+
+                <div class="content-text bold">What keeps us from being transparent with trusted friends?</div>
+                <div class="write-in-line" style="width: 95%;"></div><br>
+
+                <!-- Prayer header with background -->
+                <div class="section-header prayer-header">🕊️ Prayer Focus</div>
+                
+                <!-- Content - white background only -->
+                <div class="content-text bold">Individual Reflection (2-3 minutes)</div>
+                <div class="content-text bold">Ask God to show you:</div>
+                <div class="content-text">• Safe people with whom you can be vulnerable</div>
+                <div class="content-text">• Areas where you need healing through confession</div>
+                <div class="content-text">• How to create space for others to share authentically</div>
+                
+                <div class="content-text bold">Prayer Requests (areas needing healing, confession, transparency):</div>
+                <div class="write-in-line" style="width: 95%;"></div><br>
+                <div class="write-in-line" style="width: 95%;"></div><br>
+                <div class="write-in-line" style="width: 95%;"></div><br>
+                
+                <div class="content-text bold">Praise Reports:</div>
+                <div class="write-in-line" style="width: 95%;"></div><br>
+                <div class="write-in-line" style="width: 95%;"></div><br>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: DISCUSSION, CHALLENGE & NOTES -->
+    <div class="page">
+        <div class="three-column">
+            <!-- LEFT COLUMN: Discussion Questions -->
+            <div class="column">
+                <!-- Discussion header with background -->
+                <div class="section-header discussion-header">💬 Discussion Questions</div>
+                
+                <!-- Question categories with backgrounds that stop at text -->
+                <div class="question-category-header">🌱 Opening (Choose 1-2)</div>
+                <div class="question-item">What does it mean to "share each other's burdens" practically?</div>
+                <div class="question-item">How does confession to another person differ from confessing only to God?</div>
+                <div class="question-item">What's the difference between transparency and oversharing?</div>
+
+                <div class="question-category-header green">💝 Getting Personal (Choose 2-3)</div>
+                <div class="question-item">What makes it hard for you to be vulnerable with others?</div>
+                <div class="question-item">When has someone's transparency with you deepened your relationship?</div>
+                <div class="question-item">How have you experienced healing through sharing struggles with a trusted friend?</div>
+                <div class="question-item">What does it look like to "gently and humbly help" someone in sin?</div>
+
+                <div class="question-category-header red">🤔 Going Deeper (Choose 2-3)</div>
+                <div class="question-item">Why does James connect confession with healing? What kind of healing?</div>
+                <div class="question-item">How does hiding our struggles actually hinder our fellowship with others?</div>
+                <div class="question-item">What makes someone "safe" to share your deepest struggles with?</div>
+                <div class="question-item">How can we become the kind of people others feel safe being transparent with?</div>
+                <div class="question-item">How does bearing burdens together fulfill "the law of Christ"?</div>
+            </div>
+
+            <!-- MIDDLE COLUMN: Challenge -->
+            <div class="column">
+                <!-- Challenge header with background -->
+                <div class="section-header challenge-header">🌟 This Month's Challenge</div>
+                
+                <!-- Content - white background only -->
+                <div class="content-text bold" style="text-align: center; margin-bottom: 6px;">Choose one way to practice transparent fellowship:</div>
+                
+                <div class="challenge-grid">
+                    <div class="challenge-item">
+                        <input type="checkbox"> <strong>Confession Partner</strong><br>
+                        Ask someone to be a safe person for regular confession/prayer
+                    </div>
+                    <div class="challenge-item">
+                        <input type="checkbox"> <strong>Share Authentically</strong><br>
+                        Be vulnerable about one struggle with a trusted friend
+                    </div>
+                    <div class="challenge-item">
+                        <input type="checkbox"> <strong>Listen Without Fixing</strong><br>
+                        Create space for someone else to share transparently
+                    </div>
+                    <div class="challenge-item">
+                        <input type="checkbox"> <strong>Ask for Prayer</strong><br>
+                        Request specific prayer for an area you usually keep private
+                    </div>
+                    <div class="challenge-item">
+                        <input type="checkbox"> <strong>Practice James 5:16</strong><br>
+                        Confess and pray with someone this week
+                    </div>
+                    <div class="challenge-item">
+                        <input type="checkbox"> <strong>Other:</strong><br>
+                        <div class="write-in-line" style="width: 80%;"></div>
+                    </div>
+                </div>
+
+                <!-- Next Month header with background -->
+                <div class="section-header challenge-header" style="margin-top: 10px;">📅 Next Month Preview</div>
+                <div class="content-text bold" style="text-align: center;">Month 3: Topic TBD with group</div>
+                <div class="content-text" style="text-align: center; font-style: italic;"><strong>Focus:</strong> Experience God's healing through transparent fellowship!</div>
+                <div class="content-text" style="text-align: center;"><strong>Preparation:</strong> Consider how vulnerability has brought healing in your life.</div>
+            </div>
+
+            <!-- RIGHT COLUMN: Notes -->
+            <div class="column">
+                <!-- Notes header with background -->
+                <div class="section-header notes-header">📝 Personal Notes & Insights</div>
+                <div class="notes-area">
+                    <div class="notes-lines"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer with background -->
+        <div class="footer">
+            <div class="contact-grid">
+                <div class="contact-item">Leader: ________________</div>
+                <div class="contact-item">Phone: ________________</div>
+                <div class="contact-item">Virtual: ________________</div>
+            </div>
+            <div style="margin-top: 4px; font-style: italic;">
+                "Confess your sins to each other and pray for each other so that you may be healed." - James 5:16
+            </div>
+        </div>
+    </div>
+</body>
+</html>
