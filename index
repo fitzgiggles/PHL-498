@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Study Month 2 - Fellowship</title>
+    <style>
+@page { size: letter portrait; margin-top: 0.5in; margin-bottom: 0.5in; margin-left: 0.5in; margin-right: 0.5in; }
+@page :left  { margin-left: 0.75in; margin-right: 0.5in; }
+@page :right { margin-left: 0.5in;  margin-right: 0.75in; }
+
+/* --- Clean duplex breaks: front/back sides --- */
+.front { break-after: page; page-break-after: always; }
+.back  { break-before: page; page-break-before: always; }
+.page:last-of-type { break-after: auto; page-break-after: auto; }
+
+/* Avoid splitting critical blocks across sides */
+.page, .row, .box, .scripture, .key-wrap, .notes, .footer, .q-list,
+h1, h2, h3, p, ol, ul { break-inside: avoid; page-break-inside: avoid; }
+
+@media print {
+  html, body { margin: 0; background: white !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  .page { margin: 0; padding: 0; background: white !important; page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+}
+
+/* ---------- BASE ----------- */
+html, body {
+  padding: 0; margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #111827;
+}
+.page {
+  width: auto; min-height: auto; height: auto;
+  margin: 0 auto; padding: 0;
+  background: #ffffff;
+  page-break-after: always;
+}
+.page + .page { page-break-before: always; }
+
+h1 { font-size: 24pt; margin: 0 0 8pt; font-weight: 800; }
+.subtitle { font-size: 12pt; margin: 0 0 10pt; font-weight: 600; color: #374151; }
+h2 { font-size: 14pt; margin: 0 0 8pt; font-weight: 800; display: inline-block; padding: 4pt 8pt; border-radius: 6pt; }
+h3 { font-size: 12pt; margin: 0 0 6pt; font-weight: 700; display: inline-block; padding: 2pt 6pt; border-radius: 6pt; }
+p, li { font-size: 11pt; line-height: 1.35; margin: 0 0 8pt; }
+.small { font-size: 9pt; color: #4b5563; }
+
+/* Headers (black/white for printer-friendly) */
+.hdr-red    { background: #333; color: #fff; }
+.hdr-blue   { background: #555; color: #fff; }
+.hdr-green  { background: #444; color: #fff; }
+.hdr-purple { background: #666; color: #fff; }
+
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 16pt; align-items: start; }
+.row.three { grid-template-columns: 1fr 1fr 1fr; gap: 16pt; }
+.box { box-sizing: border-box; }
+.inline-header { display: inline-block; }
+
+/* Scripture */
+.scripture { font-size: 11pt; column-count: 1; column-gap: 18pt; }
+.verse { break-inside: avoid; }
+.vnum { font-weight: 700; margin-right: 4pt; }
+
+/* Key verse callout */
+.key-wrap { margin-top: 8pt; }
+.key-title { display:inline-block; }
+.key-body { border-left: 3pt solid #2563EB; padding: 6pt 10pt; background: #fff; }
+
+/* Lists */
+.q-list { padding-left: 14pt; }
+.q-list li { margin-bottom: 6pt; }
+
+/* Notes */
+.notes { border: 1pt solid #e5e7eb; border-radius: 6pt; padding: 8pt; background: #fff !important; }
+.note-line { border-bottom: 1pt dashed #cbd5e1; height: 18pt; background: #fff !important; }
+
+/* Footer */
+.footer { margin-top: 10pt; padding-top: 8pt; border-top: 1pt solid #e5e7eb; font-size: 9pt; display:flex; gap:12pt; flex-wrap:wrap; color:#374151; }
+.contact-grid { display:flex; gap:8pt; flex-wrap:wrap; }
+.tag { padding: 2pt 6pt; border-radius: 4pt; background:#f1f5f9; }
+
+/* Stretch to use vertical space gracefully */
+.stretch { min-height: calc(100vh - 1in); display: grid; align-content: start; gap: 14pt; }
+
+/* Title/header row layout */
+.header-grid { display:grid; grid-template-columns: 1fr 1fr; gap:16pt; align-items:end; }
+.header-right { text-align:right; }
+.header-right .line { border-bottom:1pt solid #cbd5e1; height:14pt; margin-top:2pt; }
+
+/* Theme chip */
+.theme-chip { display:inline-block; padding:4pt 8pt; border-radius:6pt; background:#555; color:#fff; font-weight:700; }
+
+/* Scripture boxed area (light background) */
+.scripture-box { background:#F8FAFC; border:1pt solid #E5E7EB; border-radius:8pt; padding:10pt; }
+
+/* Key verse box */
+.keyverse-chip { display:inline-block; padding:4pt 8pt; border-radius:6pt; background:#444; color:#fff; font-weight:700; }
+.keyverse-box { border:1pt solid #444; border-radius:6pt; padding:8pt; background:#fff; }
+
+/* Force a hard break after Key Verse per request */
+.break-after { break-after: page; page-break-after: always; }
+
+/* Section label chips */
+.chip { display:inline-block; padding:4pt 8pt; border-radius:6pt; color:#fff; font-weight:700; }
+.chip-blue { background:#555; }
+.chip-green { background:#444; }
+.chip-purple{ background:#666; }
+.chip-orange{ background:#333; }
+
+</style>
+</head>
+<body>
+  <!-- PAGE 1 (FRONT) -->
+  <section class="page front">
+    <div class="stretch">
+      <div class="header-grid">
+        <div>
+          <h1>Women's Bible Study</h1>
+          <p class="subtitle">Month 2: "Fellowship"</p>
+        </div>
+        <div class="header-right">
+          <div>Date: _______________</div>
+          <div style="margin-top:8pt;">Location: _______________</div>
+        </div>
+      </div>
+
+      <div style="margin: 14pt 0;">
+        <span class="theme-chip">🤝 This Month's Theme: The Power of Transparent Fellowship 💕</span>
+      </div>
+
+      <div class="row">
+        <!-- Left: Scripture -->
+        <div class="box">
+          <h2 class="hdr-red inline-header">Scripture Reading</h2>
+          <div class="scripture-box">
+            <div class="scripture">
+              <p class="verse"><strong>James 5:16</strong><br>
+              <span class="vnum">16</span><strong>Confess your trespasses to one another, and pray for one another, that you may be healed. The effective, fervent prayer of a righteous man avails much.</strong></p>
+              
+              <p class="verse" style="margin-top:12pt;"><strong>Galatians 6:1-2</strong><br>
+              <span class="vnum">1</span>Brethren, if a man is overtaken in any trespass, you who are spiritual restore such a one in a spirit of gentleness, considering yourself lest you also be tempted. <span class="vnum">2</span><strong>Bear one another's burdens, and so fulfill the law of Christ.</strong></p>
+            </div>
+            <p class="small" style="text-align:right; margin-top:8pt;">— James 5:16 & Galatians 6:1-2 (NKJV)</p>
+          </div>
+
+          <div class="key-wrap">
+            <h3 class="keyverse-chip">✨ Key Verse</h3>
+            <div class="keyverse-box">
+              <p class="small">"Confess your trespasses to one another, and pray for one another, that you may be healed." — James 5:16</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Pre-Study & Prayer -->
+        <div class="box">
+          <h2 class="hdr-purple inline-header">Pre-Study Reflection</h2>
+          <ul class="q-list">
+            <li>What is the connection between confession and healing in James 5:16?</li>
+            <li>How does "bearing one another's burdens" invite God's presence?</li>
+            <li>What keeps us from being transparent with trusted friends?</li>
+          </ul>
+
+          <h2 class="hdr-green inline-header" style="margin-top:14pt;">Prayer Focus</h2>
+          <p><strong>Ask God to show you:</strong></p>
+          <ul style="font-size:10pt; margin-left:16pt;">
+            <li>Safe people with whom you can be vulnerable</li>
+            <li>Areas where you need healing through confession</li>
+            <li>How to create space for others to share authentically</li>
+          </ul>
+
+          <p style="margin-top:12pt;"><strong>Prayer Requests:</strong></p>
+          <div class="notes">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+          </div>
+
+          <p style="margin-top:8pt;"><strong>Praise Reports:</strong></p>
+          <div class="notes">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 2 (BACK) -->
+  <section class="page back">
+    <div class="stretch">
+      <div class="row three">
+        <!-- Discussion Questions -->
+        <div class="box">
+          <h2 class="hdr-blue inline-header">Discussion Questions</h2>
+          
+          <h3 class="chip chip-purple" style="margin-top:8pt;">🌱 Opening</h3>
+          <ol class="q-list">
+            <li>What does it mean to "bear one another's burdens" practically?</li>
+            <li>How does confession to another person differ from confessing only to God?</li>
+            <li>What's the difference between transparency and oversharing?</li>
+          </ol>
+
+          <h3 class="chip chip-green" style="margin-top:10pt;">💝 Getting Personal</h3>
+          <ol class="q-list">
+            <li>What makes it hard for you to be vulnerable with others?</li>
+            <li>When has someone's transparency with you deepened your relationship?</li>
+            <li>How have you experienced healing through sharing struggles with a trusted friend?</li>
+            <li>What does it look like to "restore such a one in a spirit of gentleness"?</li>
+          </ol>
+
+          <h3 class="chip chip-orange" style="margin-top:10pt;">🤔 Going Deeper</h3>
+          <ol class="q-list">
+            <li>Why does James connect confession with healing? What kind of healing?</li>
+            <li>How does hiding our struggles actually hinder our fellowship with others?</li>
+            <li>What makes someone "safe" to share your deepest struggles with?</li>
+            <li>How can we become the kind of people others feel safe being transparent with?</li>
+            <li>How does bearing burdens together fulfill "the law of Christ"?</li>
+          </ol>
+        </div>
+
+        <!-- Monthly Challenge -->
+        <div class="box">
+          <h2 class="hdr-red inline-header">Monthly Challenge</h2>
+          <p style="text-align:center; font-weight:600;">Choose one way to practice transparent fellowship:</p>
+          
+          <div style="margin:8pt 0;">
+            <div class="tag" style="display:block; margin:4pt 0; padding:6pt;">
+              ☐ <strong>Confession Partner:</strong> Ask someone to be a safe person for regular confession/prayer
+            </div>
+            <div class="tag" style="display:block; margin:4pt 0; padding:6pt;">
+              ☐ <strong>Share Authentically:</strong> Be vulnerable about one struggle with a trusted friend
+            </div>
+            <div class="tag" style="display:block; margin:4pt 0; padding:6pt;">
+              ☐ <strong>Listen Without Fixing:</strong> Create space for someone else to share transparently
+            </div>
+            <div class="tag" style="display:block; margin:4pt 0; padding:6pt;">
+              ☐ <strong>Ask for Prayer:</strong> Request specific prayer for an area you usually keep private
+            </div>
+            <div class="tag" style="display:block; margin:4pt 0; padding:6pt;">
+              ☐ <strong>Practice James 5:16:</strong> Confess and pray with someone this week
+            </div>
+            <div class="tag" style="display:block; margin:4pt 0; padding:6pt;">
+              ☐ <strong>Other:</strong> _________________________________
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="box">
+          <h2 class="hdr-blue inline-header">Personal Notes & Insights</h2>
+          <div class="notes" style="height:400pt; margin-top:8pt;">
+            <div style="height:100%; background-image: repeating-linear-gradient(transparent, transparent 18pt, #cbd5e1 18pt, #cbd5e1 19pt);"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div style="margin-top:6pt; font-style:italic; text-align:center; width:100%;">
+          "Confess your trespasses to one another, and pray for one another, that you may be healed." — James 5:16 (NKJV)
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
